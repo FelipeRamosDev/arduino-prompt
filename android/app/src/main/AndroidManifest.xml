@@ -29,5 +29,13 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+
+      <!-- GOOGLE MAPS -->
+      <meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyAPIE7l5G62lfUVm8i64NILjKKSoKpfnXs"
+      />
+      <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+      <!-- GOOGLE MAPS -->
     </application>
 </manifest>
