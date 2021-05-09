@@ -1,7 +1,9 @@
 import SwitchCommand from '../components/apps/app-command/views/switch/switch';
+import DevicePositionCommand from '../components/apps/app-command/views/device-position/device-position';
 
 // Models
 import { SwitchCommandModel } from '../models/app-commands/switch-model';
+import { DevicePositionCommandModel } from '../models/app-commands/device-position-model';
 
 export default class AppModel{
     constructor(props = {
@@ -38,5 +40,9 @@ export const commandTypes = {
     switch: {
         Component: SwitchCommand,
         DataModel: SwitchCommandModel,
+    },
+    getDevicePosition: {
+        Component: DevicePositionCommand,
+        DataModel: DevicePositionCommandModel,
     },
 };

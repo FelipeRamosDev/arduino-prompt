@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import {
     ActivityIndicator,
 } from 'react-native';
+
 // Controllers
 import {
     scanClassicDevices,
     connect,
     stopScan,
 } from './scan-serial-controllers';
+
 // Icons
 // Contexts
 import { useBtConnection } from '../../../core/contexts/bt-connection';
+
 // Styled components
 import {
     DefaultButton,
@@ -20,12 +23,12 @@ import {
     ScrollModal,
     ItemListModal,
 } from '../../../styles/main';
+
 // Styles
 import { defaultTheme } from '../../../styles/theme';
 
 export default function ConnectBluetoothModal({ setVisible }) {
     const [loading, setLoading] = useState(false);
-    // const [ searching, setSearching ] = useState(false);
     const [devices, setDevices] = useState([]);
     const { setBtConnection } = useBtConnection();
 

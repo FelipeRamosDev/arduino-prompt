@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.4",
+    "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.10",
     "@react-navigation/native": "^5.9.4",
@@ -21,6 +22,7 @@
     "react-native-ble-plx": "^2.0.2",
     "react-native-bluetooth-classic": "^1.60.0-rc.13",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-maps": "^0.28.0",
     "react-native-modal-selector": "^2.0.3",
     "react-native-navigation-bar-color": "^2.0.1",
     "react-native-reanimated": "^2.1.0",

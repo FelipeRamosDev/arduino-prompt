@@ -3,6 +3,9 @@
 import React from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native';
 
+// Components
+import Header from '../../../components/headers/back-buttom/back-button';
+
 // Controllers
 import { selectCommandType } from '../edit-app/edit-app-controllers';
 
@@ -13,18 +16,10 @@ import { commandTypes } from '../../../models/apps-model';
 import {
     DefaultModal,
     FullModalBox,
-    Header,
-    Toolbar,
-    ToolbarItem,
-    DefaultButton,
-    P,
     Title,
     CenterP,
     Container,
 } from '../../../styles/main';
-
-// Icons
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 // Styles
 import { defaultTheme } from '../../../styles/theme';
@@ -33,19 +28,7 @@ export default function CommandsOptionsModal({ modalControl, currCmd, setCurrCmd
     return (
         <DefaultModal>
             <FullModalBox color={defaultTheme.tertiary}>
-                <Header color={defaultTheme.secondary}>
-                    <Toolbar>
-                        <ToolbarItem>
-                            <DefaultButton
-                                style={{ padding: 0, paddingRight: 20, height: 'auto', backgroundColor: 'transparent' }}
-                                onPress={() => modalControl(false)}
-                            >
-                                <FontAwesome5 name="chevron-left" color={defaultTheme.text[0]} size={20} style={{ marginRight: 10 }} />
-                                <P size="1.2">Voltar</P>
-                            </DefaultButton>
-                        </ToolbarItem>
-                    </Toolbar>
-                </Header>
+                <Header backBtnSetter={modalControl} />
 
                 <ScrollView contentContainerStyle={{
                     padding: 10,

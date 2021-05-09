@@ -18,6 +18,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import BtConnectionProvider from './src/core/contexts/bt-connection';
 import AppsListProvider from './src/core/contexts/apps-list';
 import CurrAppProvider from './src/core/contexts/curr-app';
+import BtListenerProvider from './src/core/contexts/bt-listener';
 
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './src/styles/theme';
@@ -31,58 +32,60 @@ export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BtConnectionProvider>
-        <AppsListProvider>
-          <CurrAppProvider>
-            <NavigationContainer>
-              <Tab.Navigator
-                tabBarOptions={{
-                  style: {
-                    backgroundColor: defaultTheme.secondary,
-                    paddingBottom: 5,
-                    borderTopWidth: 0,
-                  },
-                  activeTintColor: defaultTheme.text[0],
-                }}
-              >
-
-                <Tab.Screen
-                  name="devices"
-                  component={DevicesPage}
-                  options={{
-                    title: 'Dispositivos',
-                    tabBarLabel: 'Dispositivos',
-                    tabBarIcon: ({ color, size }) => {
-                      return <Ionicons name="bluetooth" color={color} size={size} />;
+        <BtListenerProvider>
+          <AppsListProvider>
+            <CurrAppProvider>
+              <NavigationContainer>
+                <Tab.Navigator
+                  tabBarOptions={{
+                    style: {
+                      backgroundColor: defaultTheme.secondary,
+                      paddingBottom: 5,
+                      borderTopWidth: 0,
                     },
+                    activeTintColor: defaultTheme.text[0],
                   }}
-                />
+                >
 
-                <Tab.Screen
-                  name="apps"
-                  component={AppsPage}
-                  options={{
-                    tabBarLabel: 'Aplicativos',
-                    tabBarIcon: ({ color, size }) => {
-                      return <Ionicons name="apps" color={color} size={size} />;
-                    },
-                  }}
-                />
+                  <Tab.Screen
+                    name="devices"
+                    component={DevicesPage}
+                    options={{
+                      title: 'Dispositivos',
+                      tabBarLabel: 'Dispositivos',
+                      tabBarIcon: ({ color, size }) => {
+                        return <Ionicons name="bluetooth" color={color} size={size} />;
+                      },
+                    }}
+                  />
 
-                <Tab.Screen
-                  name="prompt"
-                  component={PromptPage}
-                  options={{
-                    tabBarLabel: 'Prompt',
-                    tabBarIcon: ({ color, size }) => {
-                      return <Ionicons name="code" color={color} size={size} />;
-                    },
-                  }}
-                />
+                  <Tab.Screen
+                    name="apps"
+                    component={AppsPage}
+                    options={{
+                      tabBarLabel: 'Aplicativos',
+                      tabBarIcon: ({ color, size }) => {
+                        return <Ionicons name="apps" color={color} size={size} />;
+                      },
+                    }}
+                  />
 
-              </Tab.Navigator>
-            </NavigationContainer>
-          </CurrAppProvider>
-        </AppsListProvider>
+                  <Tab.Screen
+                    name="prompt"
+                    component={PromptPage}
+                    options={{
+                      tabBarLabel: 'Prompt',
+                      tabBarIcon: ({ color, size }) => {
+                        return <Ionicons name="code" color={color} size={size} />;
+                      },
+                    }}
+                  />
+
+                </Tab.Navigator>
+              </NavigationContainer>
+            </CurrAppProvider>
+          </AppsListProvider>
+        </BtListenerProvider>
       </BtConnectionProvider>
     </ThemeProvider>
   );

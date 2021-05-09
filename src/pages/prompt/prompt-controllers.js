@@ -31,3 +31,18 @@ export function sendCMD({btConnection, historyCMD, setHistoryCMD, currCMD, setCu
         );
     }
 }
+
+export function startMonitor({ btConnection, listeners, listenersSetter, history, historySetter }){
+    btService.listenSerial({
+        name: 'serial-monitor',
+        btConnection,
+        listeners,
+        listenersSetter,
+        callback: (received, { historyCMD, historyCMDSetter })=>{
+            let data = JSON.stringify(received.data);
+            console.log(data)
+            historyCMDSetter([...historyCMD, data]);
+        },
+        callbackParams: { historyCMD: history, historyCMDSetter: historySetter },
+    });
+}

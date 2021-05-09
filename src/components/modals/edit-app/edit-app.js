@@ -7,8 +7,6 @@ import {
     DefaultButton,
     P,
     ScrollModal,
-    Header, Toolbar,
-    ToolbarItem,
     RoundFlotButton,
     LabelInput,
     Input,
@@ -20,6 +18,7 @@ import { defaultTheme } from '../../../styles/theme';
 
 // Components
 import AppCommand from '../../../components/apps/app-command/app-command';
+import Header from '../../../components/headers/back-buttom/back-button';
 
 // Controllers
 import { saveApp, addCommand } from './edit-app-controllers';
@@ -32,7 +31,6 @@ import { useCurrApp } from '../../../core/contexts/curr-app';
 import AppsModel from '../../../models/apps-model';
 
 // Icons
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Styled components
@@ -65,20 +63,7 @@ export default function EditAppModal({ type, modalControl }) {
         return (
             <DefaultModal>
                 <FullModalBox color="#fff">
-                    <Header color={defaultTheme.secondary}>
-                        <Toolbar>
-                            <ToolbarItem>
-                                <DefaultButton
-                                    style={{ padding: 0, paddingRight: 20, height: 'auto', backgroundColor: 'transparent' }}
-                                    onPress={() => modalControl(false)}
-                                >
-                                    <FontAwesome5 name="chevron-left" color={defaultTheme.text[0]} size={20} style={{ marginRight: 10 }} />
-                                    <P size="1.2">Voltar</P>
-                                </DefaultButton>
-                            </ToolbarItem>
-                        </Toolbar>
-                    </Header>
-
+                    <Header backBtnSetter={modalControl} />
 
                     <ScrollModal contentContainerStyle={{ minHeight: '100%', width: '100%', paddingBottom: 20 }}>
                         <Container style={{ paddingTop: 20 }}>

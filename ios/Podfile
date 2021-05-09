@@ -16,6 +16,8 @@ target 'SerialPrompt' do
 
   pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
 
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
   target 'SerialPromptTests' do
     inherit! :complete
     # Pods for testing

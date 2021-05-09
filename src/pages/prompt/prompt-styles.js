@@ -5,7 +5,7 @@ export const Prompt = styled.ScrollView`
     background-color: ${props => props.theme.black};
     border-radius: 10px;
     width: 96%;
-    margin: 2% auto;
+    margin: 0 auto 2% auto;
 `;
 
 export const PromptP = styled.Text`

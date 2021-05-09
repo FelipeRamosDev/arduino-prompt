@@ -3,15 +3,17 @@ import React, { useState, useEffect } from 'react';
 import {
     ActivityIndicator,
 } from 'react-native';
+
 // Controllers
 import {
     scanBLEDevices,
     connect,
     stopScan,
 } from './scan-ble-controllers';
-// Icons
+
 // Contexts
 import { useBtConnection } from '../../../core/contexts/bt-connection';
+
 // Styled components
 import {
     MediumModalBox,
@@ -21,6 +23,7 @@ import {
     DefaultButton,
     ItemListModal,
 } from '../../../styles/main';
+
 // Styles
 import { defaultTheme } from '../../../styles/theme';
 

@@ -80,10 +80,18 @@ export default class BluetoothService {
             try {
                 let sent = await device.write(cmd);
                 if (sent) {
-                    this.readListener = device.onDataReceived(response => {
-                        let parsed = JSON.parse(response.data);
-                        this.readListener.remove();
-                        resolve(parsed);
+                    this.readListener = await device.onDataReceived(response => {
+
+                        if (response.data.search(';') > -1) {
+                            response.data.replace(';', '');
+                            let parsed = JSON.parse(response.data);
+
+                            this.readListener.remove();
+                            resolve(parsed);
+
+                        } else {
+                            throw new Error('Está faltando o delimitador!');
+                        }
                     });
                 } else {
                     throw new Error('Ocorreu um erro ao enviar o comando!');
@@ -108,5 +116,38 @@ export default class BluetoothService {
                 reject(err);
             }
         });
+    }
+
+    async listenSerial({ name, btConnection, listeners, listenersSetter, wantedCMD, callback, callbackParams }) {
+        let device = btConnection.device;
+        try {
+            let listener = await device.onDataReceived(({ data }) => {
+                let parsed = JSON.parse(data);
+                if (parsed.cmd === wantedCMD) {
+                    callback(parsed, callbackParams);
+                }
+            });
+            let repeats = listeners.filter(x => x.name === name);
+
+            if (repeats.length < 1) {
+                listenersSetter([...listeners, { name: name, listener }]);
+            } else {
+                let indexOf = listeners.indexOf(repeats[0]);
+                let newItem = listeners;
+
+                newItem[indexOf].listener.remove();
+                newItem[indexOf] = { name: name, listener };
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    removeListeners({ listeners, listenersSetter, toRemove }) {
+        if (!toRemove) {
+            listeners.map(x => x.listener.remove());
+        } else {
+
+        }
     }
 }
